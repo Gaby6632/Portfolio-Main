@@ -1,69 +1,57 @@
-import Image from "next/image";
+import Link from 'next/link';
+import SkillsCarousel from '@/components/SkillsCarousel';
+import { btnFill, btnOutline, btnFillDark, btnOutlineDark, h1, h2 } from '@/lib/ui';
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* 1. Header */}
+      <section className="container-x grid min-h-[calc(100vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
+        <div>
+          <h1 className={h1}>Your title goes here</h1>
+          <p className="max-w-[520px] text-lg text-muted">A short paragraph under the title. Tell visitors who you are and what you do.</p>
+          <div className="mt-6 flex flex-wrap gap-4">
+            <Link href="/hire-me" className={btnFill}>Hire Me</Link>
+            <Link href="/contact" className={btnOutline}>Contact Me</Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <img className="order-first max-h-96 w-full rounded-[20px] object-cover md:order-none md:max-h-[600px]" src="https://placehold.co/500x600?text=Your+Photo" alt="Your photo" />
+      </section>
+
+      {/* 2. Description */}
+      <section className="container-x grid items-center gap-12 py-16 md:grid-cols-2">
+        <div>
+          <h2 className={h2}>What I do</h2>
+          <p>Write a paragraph about your services here. Explain what you offer, who you work with and why people should choose you.</p>
         </div>
-      </main>
-    </div>
+        <img className="w-full rounded-2xl" src="https://placehold.co/600x400?text=Image" alt="" />
+      </section>
+
+      {/* 3. Skills */}
+      <section className="overflow-hidden bg-surface py-16">
+        <div className="container-x">
+          <h2 className={h2}>Skills &amp; tools</h2>
+          <p className="text-muted">Drag to browse, click a card for more details.</p>
+        </div>
+        <SkillsCarousel />
+      </section>
+
+      {/* 4. Get Started */}
+      <section className="relative isolate overflow-hidden bg-[#0a0c12] py-32 text-center">
+        <span className="absolute -top-20 left-[6%] -z-20 size-[340px] rounded-full bg-red-500 opacity-85 blur-[80px]" />
+        <span className="absolute -bottom-24 left-[30%] -z-20 size-[340px] rounded-full bg-blue-500 opacity-85 blur-[80px]" />
+        <span className="absolute -top-16 right-[30%] -z-20 size-[340px] rounded-full bg-yellow-400 opacity-85 blur-[80px]" />
+        <span className="absolute -bottom-20 right-[6%] -z-20 size-[340px] rounded-full bg-green-500 opacity-85 blur-[80px]" />
+        {/* cloud layer */}
+        <span className="absolute inset-0 -z-10 bg-white/5 bg-[radial-gradient(ellipse_280px_140px_at_15%_30%,rgba(255,255,255,.16),transparent_70%),radial-gradient(ellipse_340px_160px_at_45%_75%,rgba(255,255,255,.14),transparent_70%),radial-gradient(ellipse_300px_150px_at_75%_25%,rgba(255,255,255,.16),transparent_70%),radial-gradient(ellipse_260px_130px_at_90%_80%,rgba(255,255,255,.12),transparent_70%)] backdrop-blur-[28px]" />
+        <div className="container-x">
+          <h2 className="text-4xl font-extrabold text-white md:text-6xl">Get Started</h2>
+          <div className="mt-6 flex flex-wrap justify-center gap-4">
+            <Link href="/hire-me" className={btnFillDark}>Hire Me</Link>
+            <Link href="/services" className={btnOutlineDark}>Services</Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
