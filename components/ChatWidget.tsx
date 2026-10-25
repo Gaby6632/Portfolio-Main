@@ -66,7 +66,7 @@ export default function ChatWidget() {
       >
         <div className="flex items-center justify-between border-b border-line px-4 py-3.5 font-semibold">
           <span>AI Assistant</span>
-          <button aria-label="Close chat" onClick={() => setOpen(false)} className="p-1 text-lg"><FaChevronDown /></button>
+          <button aria-label="Close chat" onClick={() => setOpen(false)} className="p-2 text-lg bg-gray-200 rounded-full"><FaChevronDown /></button>
         </div>
 
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
