@@ -8,6 +8,7 @@
   --color-muted: #5b6478;
   --color-line: rgb(15 23 42 / 0.12);
   --animate-blink: blink 1s infinite;
+  
   @keyframes blink {
     0%, 80%, 100% { opacity: 0.25; }
     40% { opacity: 1; }
@@ -15,8 +16,17 @@
 }
 
 @utility container-x {
-  width: min(70%, 92%);
+  width: min(90%, 95%);
   margin-inline: auto;
+}
+
+@utility container-box {
+  width: min(70%, 92%);
+  padding: 1rem;
+
+  background: #fff;
+  border: 1px solid rgba(0, 140, 255, 0.6);
+  border-radius: 20px;
 }
 
 html { scroll-behavior: smooth; }

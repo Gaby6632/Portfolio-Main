@@ -9,3 +9,7 @@ export const btnOutlineDark = `${base} border-white bg-transparent text-white ho
 export const h1 = 'mb-4 text-4xl font-bold leading-tight md:text-6xl';
 export const h2 = 'mb-4 text-3xl font-bold md:text-4xl';
 export const field = 'w-full rounded-[10px] border border-line bg-surface px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-accent2';
+
+export const paragraph = 'text-base text-muted-foreground max-w-3xl mx-auto md:text-xl';
+export const p = 'text-base text-left text-muted-foreground mb-5 max-w-3xl md:text-xl';
+export const subTitle = 'text-xl max-w-3xl md:text-2xl'
