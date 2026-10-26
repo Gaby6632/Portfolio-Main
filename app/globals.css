@@ -15,7 +15,7 @@
 }
 
 @utility container-x {
-  width: min(1150px, 92%);
+  width: min(70%, 92%);
   margin-inline: auto;
 }
 
