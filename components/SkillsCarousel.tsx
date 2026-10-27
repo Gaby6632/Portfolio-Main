@@ -14,7 +14,9 @@ export default function SkillsCarousel() {
   });
   const [selected, setSelected] = useState<Skill | null>(null);
   const selectedRef = useRef<Skill | null>(null);
-  selectedRef.current = selected;
+  useEffect(() => {
+    selectedRef.current = selected;
+  }, [selected]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -76,12 +78,12 @@ export default function SkillsCarousel() {
               key={i}
               data-i={i}
               className="mr-5 flex w-[260px] shrink-0 flex-col gap-2.5 rounded-[18px] p-5 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
-              style={{ background: `linear-gradient(to bottom right, ${s.light}, ${s.dark})` }}
+              style={{ background: `linear-gradient(to bottom right, ${s.light}, ${s.middle}, ${s.dark})` }}
             >
-              <img src="https://placehold.co/80x80?text=Logo" alt="" draggable={false} className="h-14 w-14 rounded-xl object-cover" />
-              <h3 className="text-xl font-bold">{s.name}</h3>
+              <div className='flex justify-center'><img src={s.logo} alt={`${s.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
+              <h3 className="text-xl text-center font-bold">{s.name}</h3>
               <p className="text-sm opacity-95">{s.short}</p>
-              <img src="https://placehold.co/260x120?text=Image" alt="" draggable={false} className="mt-auto w-full rounded-xl" />
+              <img src={s.image} alt={`${s.name} logo`} draggable={false} className="mt-auto w-full rounded-xl" />
             </div>
           ))}
         </div>
@@ -92,12 +94,13 @@ export default function SkillsCarousel() {
           <div
             className="flex w-[min(600px,100%)] flex-col gap-2.5 rounded-[18px] p-8 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
             onClick={(e) => e.stopPropagation()}
-            style={{ background: `linear-gradient(to bottom right, ${selected.light}, ${selected.dark})` }}
+            style={{ background: `linear-gradient(to bottom right, ${selected.light}, ${selected.middle}, ${selected.dark}) ` }}
           >
-            <img src="https://placehold.co/96x96?text=Logo" alt="" className="h-20 w-20 rounded-xl object-cover" />
+            {/* <img src="https://placehold.co/96x96?text=Logo" alt="" className="h-20 w-20 rounded-xl object-cover" /> */}
+            <div className='flex justify-center'><img src={selected.logo} alt={`${selected.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
             <h3 className="text-2xl font-bold">{selected.name}</h3>
             <p>{selected.short}</p>
-            <img src="https://placehold.co/560x260?text=Image" alt="" className="w-full rounded-xl" />
+            <img src={selected.image} alt={`${selected.name} logo`} className="w-full rounded-xl" />
             <p className="mt-2">{selected.long}</p>
           </div>
         </div>
