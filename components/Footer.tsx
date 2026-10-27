@@ -12,9 +12,9 @@ export default function Footer() {
           <h3 className={title}>YourName</h3>
           <p className="text-muted">Short tagline placeholder.</p>
           <div className="mt-4 flex gap-4 text-2xl text-accent">
-            <a href="#" aria-label="Reddit" className="hover:text-accent2"><FaReddit /></a>
+            <a href="https://www.reddit.com/user/gaby6632/" aria-label="Reddit" className="hover:text-accent2"><FaReddit /></a>
             <a href="#" aria-label="LinkedIn" className="hover:text-accent2"><FaLinkedin /></a>
-            <a href="#" aria-label="GitHub" className="hover:text-accent2"><FaGithub /></a>
+            <a href="https://github.com/Gaby6632" aria-label="GitHub" className="hover:text-accent2"><FaGithub /></a>
           </div>
         </div>
         <div>
@@ -39,8 +39,8 @@ export default function Footer() {
         <div>
           <h4 className={title}>Contact</h4>
           <ul>
-            <li className={item}><a href="tel:+40000000000" className="inline-flex items-center gap-2"><FaPhone /> +40 000 000 000</a></li>
-            <li className={item}><a href="mailto:you@example.com" className="inline-flex items-center gap-2"><FaEnvelope /> you@example.com</a></li>
+            <li className={item}><a href="tel:+40752857960" className="inline-flex items-center gap-2 text-accent"><FaPhone />+40752857960</a></li>
+            <li className={item}><a href="mailto:gabijoian12@gmail.com" className="inline-flex items-center gap-2 text-accent"><FaEnvelope />gabijoian12@gmail.com</a></li>
           </ul>
         </div>
       </div>
