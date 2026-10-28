@@ -1,11 +1,12 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import ReactMarkdown, { type Components } from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { FaComments, FaChevronDown, FaPaperPlane } from 'react-icons/fa';
 
 type Message = { role: 'user' | 'assistant'; content: string };
 
-// Lives in app/layout.tsx, so its state survives page navigation
-// and only resets on refresh / closing the site.
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -16,6 +17,34 @@ export default function ChatWidget() {
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading, open]);
+
+  const linkCls = 'font-medium text-accent underline underline-offset-2';
+
+  const md: Components = {
+    a: ({ href = '', children }) =>
+      href.startsWith('/') ? (
+        <Link href={href} onClick={() => setOpen(false)} className={linkCls}>
+          {children}
+        </Link>
+      ) : (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={linkCls}>
+          {children}
+        </a>
+      ),
+    img: ({ src, alt }) => (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={typeof src === 'string' ? src : ''}
+        alt={alt ?? ''}
+        loading="lazy"
+        className="my-2 block w-full rounded-xl object-cover"
+      />
+    ),
+    strong: ({ children }) => <strong className="font-bold">{children}</strong>,
+    ul: ({ children }) => <ul className="my-2 list-disc space-y-1 pl-5">{children}</ul>,
+    ol: ({ children }) => <ol className="my-2 list-decimal space-y-1 pl-5">{children}</ol>,
+    p: ({ children }) => <p className="my-2 first:mt-0 last:mb-0">{children}</p>,
+  };
 
   async function send(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -52,7 +81,6 @@ export default function ChatWidget() {
         </button>
       )}
 
-      {/* mobile-only dark background; tap it to close */}
       <div
         onClick={() => setOpen(false)}
         className={open ? 'fixed inset-0 z-[94] bg-ink/50 sm:hidden' : 'hidden'}
@@ -66,16 +94,24 @@ export default function ChatWidget() {
       >
         <div className="flex items-center justify-between border-b border-line px-4 py-3.5 font-semibold">
           <span>AI Assistant</span>
-          <button aria-label="Close chat" onClick={() => setOpen(false)} className="p-2 text-lg bg-gray-200 rounded-full"><FaChevronDown /></button>
+          <button aria-label="Close chat" onClick={() => setOpen(false)} className="rounded-full bg-gray-200 p-2 text-lg">
+            <FaChevronDown />
+          </button>
         </div>
 
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
-          <div className="whitespace-pre-wrap break-words">Hi! Ask me anything about my services or work.</div>
+          <div className="break-words">Hi! Ask me anything about my services or work.</div>
           {messages.map((m, i) =>
             m.role === 'user' ? (
-              <div key={i} className="max-w-[85%] self-end whitespace-pre-wrap break-words rounded-2xl bg-[#eef2f7] px-3.5 py-2.5">{m.content}</div>
+              <div key={i} className="max-w-[85%] self-end whitespace-pre-wrap break-words rounded-2xl bg-[#eef2f7] px-3.5 py-2.5">
+                {m.content}
+              </div>
             ) : (
-              <div key={i} className="whitespace-pre-wrap break-words">{m.content}</div>
+              <div key={i} className="break-words">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={md}>
+                  {m.content}
+                </ReactMarkdown>
+              </div>
             )
           )}
           {loading && (

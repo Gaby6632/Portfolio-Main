@@ -46,8 +46,8 @@ export default function Contact() {
                 <div className=''>
                   <h2 className='font-bold text-black text-xl'>Email Me</h2>
                   <p>Have a question about my services or a potential project?</p>
-                    <h4 className='bg-gray-300 p-1 rounded mt-2 align-middle'>
-                      <a className='flex justify-center text-accent' href="mailto:gabijoian12@gmai.com">gabijoian12@gmail.com</a>
+                    <h4 className='bg-gray-200 outline-accent outline-1 p-1 rounded mt-2 align-middle'>
+                      <a className='flex justify-center text-accent' href="mailto:gabriel.joian15@gmail.com">gabriel.joian15@gmail.com</a>
                     </h4>
                 </div>
               </div>
@@ -55,9 +55,9 @@ export default function Contact() {
               <div className='mt-8 flex gap-5'>
                 <FiPhone className="shrink-0 bg-blue-200 text-accent rounded-xl p-2 text-5xl size-12" />
                 <div className=''>
-                  <h2 className='font-bold text-black text-xl'>Let's Talk</h2>
+                  <h2 className='font-bold text-black text-xl'>Let&apos;s Talk</h2>
                   <p>Have an idea for a website or need a developer for your next project?</p>
-                    <h4 className='bg-gray-300 p-1 rounded mt-2 align-middle'>
+                    <h4 className='bg-gray-200 outline-accent outline-1 p-1 rounded mt-2 align-middle'>
                       <a className='flex justify-center text-accent' href="tel:+40752857960">+40752857960</a>
                     </h4>
                 </div>

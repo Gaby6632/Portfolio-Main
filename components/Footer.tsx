@@ -40,7 +40,7 @@ export default function Footer() {
           <h4 className={title}>Contact</h4>
           <ul>
             <li className={item}><a href="tel:+40752857960" className="inline-flex items-center gap-2 text-accent"><FaPhone />+40752857960</a></li>
-            <li className={item}><a href="mailto:gabijoian12@gmail.com" className="inline-flex items-center gap-2 text-accent"><FaEnvelope />gabijoian12@gmail.com</a></li>
+            <li className={item}><a href="mailto:gabriel.joian15@gmail.com" className="inline-flex items-center gap-2 text-accent"><FaEnvelope />gabriel.joian15@gmail.com</a></li>
           </ul>
         </div>
       </div>

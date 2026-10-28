@@ -37,7 +37,7 @@ export default function Home() {
       </section>
 
       {/* 4. Get Started */}
-      <section className="relative isolate overflow-hidden bg-[#0a0c12] py-32 text-center">
+      <section className="relative isolate overflow-hidden bg-[#cdced291] py-32 text-center">
         <span className="absolute -top-20 left-[6%] -z-20 size-[340px] rounded-full bg-red-500 opacity-85 blur-[80px]" />
         <span className="absolute -bottom-24 left-[30%] -z-20 size-[340px] rounded-full bg-blue-500 opacity-85 blur-[80px]" />
         <span className="absolute -top-16 right-[30%] -z-20 size-[340px] rounded-full bg-yellow-400 opacity-85 blur-[80px]" />
