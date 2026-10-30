@@ -90,7 +90,7 @@ export default function SkillsCarousel() {
       </div>
 
       {selected && (
-        <div className="fixed inset-0 z-[100] grid place-items-center justify-center overflow-y-auto bg-ink/65" onClick={() => setSelected(null)}>
+        <div className="fixed inset-0 z-[100] w-full h-full grid place-items-center justify-center overflow-y-auto bg-ink/65" onClick={() => setSelected(null)}>
             <div
               className="w-[90%] max-w-[900px] m-10 flex-col gap-2.5 rounded-[18px] p-8 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
               onClick={(e) => e.stopPropagation()}
