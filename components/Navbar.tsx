@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -30,17 +30,17 @@ export default function Navbar() {
           Gabriel I. Joian<span className="text-blue-500">.</span>
         </Link>
 
-        {/* Mobile menu button */}
+{/* Mobile menu button */}
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-[5px] rounded-lg transition-colors hover:bg-accent/10 md:hidden"
+          className="relative flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-lg transition-colors hover:bg-accent/10 md:hidden"
           aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
-          <span className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-200 ${open ? 'translate-y-[3.5px] rotate-45' : ''}`} />
-          <span className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-200 ${open ? 'opacity-0' : ''}`} />
-          <span className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-200 ${open ? '-translate-y-[3.5px] -rotate-45' : ''}`} />
+          <span className={`h-0.5 w-5 origin-center rounded-full bg-ink transition-all duration-300 ${open ? 'translate-y-[7.85px] rotate-45' : ''}`} />
+          <span className={`h-0.5 w-5 rounded-full bg-ink transition-all duration-300 ${open ? 'opacity-0 scale-x-0' : ''}`} />
+          <span className={`h-0.5 w-5 origin-center rounded-full bg-ink transition-all duration-300 ${open ? '-translate-y-[7.85px] -rotate-45' : ''}`} />
         </button>
 
         {/* Navigation */}
