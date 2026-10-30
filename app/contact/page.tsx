@@ -1,10 +1,57 @@
 'use client';
-import { FiMessageSquare, FiPhone, FiSend } from "react-icons/fi";
+'use client';
+
+import { useState } from 'react';
+
+import { FiMessageSquare, FiPhone } from "react-icons/fi";
 import { MdOutlineMailOutline } from "react-icons/md";
 
-import { btnFill, field, h1, paragraph, p, subTitle } from '@/lib/ui';
+import { field, h1, paragraph, p, subTitle } from '@/lib/ui';
 
 export default function Contact() {
+
+const [status, setStatus] = useState('');
+const [isSending, setIsSending] = useState(false);
+
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  e.preventDefault();
+
+  setStatus('');
+  setIsSending(true);
+
+  const form = e.currentTarget;
+  const formData = new FormData(form);
+
+  const payload = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message'),
+  };
+
+  try {
+    const response = await fetch('/api/contact', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || 'Failed to send your message.');
+    }
+
+    setStatus('Message sent successfully!');
+    form.reset();
+  } catch {
+    setStatus('Something went wrong. Please try again later.');
+  } finally {
+    setIsSending(false);
+  }
+}
+
   return (
     <section className="container-x min-h-[70vh] py-16 justify-center">
       <div className="text-center">
@@ -20,20 +67,29 @@ export default function Contact() {
                 <h2 className={subTitle}>Send Me a Message</h2>
               </div>
               <p className={p}>Fill out the form below, and I’ll get back to you within 24 hours.</p>
-            <form className="flex flex-col items-start gap-5" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex flex-col items-start gap-5" onSubmit={handleSubmit}>
               <div className='w-full'>
                 <label className='text-black ' htmlFor="#">Name</label>
-                <input className={field} placeholder="Your name" required />
+                <input className={field} name="name" placeholder="Your name" required />
               </div>
               <div className='w-full'>
                 <label className='text-black ' htmlFor="#">Mail</label>
-                <input className={field} type="email" placeholder="Your email" required />
+                <input className={field} name="email" type="email" placeholder="Your email" required />
               </div>
               <div className='w-full'>
                 <label className='text-black ' htmlFor="#">Message</label>
-                <textarea className={field} rows={5} placeholder="Your message" required />
+                <textarea className={field} name="message" rows={5} placeholder="Your message" required />
               </div>
-              <button className="w-full h-12 bg-accent text-white rounded-xl font-bold" type="submit">Send</button>
+              <button
+                className="h-12 w-full rounded-xl bg-accent font-bold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60" type="submit" disabled={isSending}>
+                {isSending ? 'Sending...' : 'Send'}
+              </button>
+
+              {status && (
+                <p role="status" aria-live="polite" className="text-sm text-muted">
+                  {status}
+                </p>
+              )}
 
             </form>
           </div>
