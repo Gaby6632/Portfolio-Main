@@ -1,5 +1,4 @@
 'use client';
-'use client';
 
 import { useState } from 'react';
 
@@ -10,13 +9,18 @@ import { field, h1, paragraph, p, subTitle } from '@/lib/ui';
 
 export default function Contact() {
 
-const [status, setStatus] = useState('');
+
+const [status, setStatus] = useState<{
+  message: string;
+  type: 'success' | 'error';
+} | null>(null);
+
 const [isSending, setIsSending] = useState(false);
 
 async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
 
-  setStatus('');
+  setStatus(null);
   setIsSending(true);
 
   const form = e.currentTarget;
@@ -43,10 +47,20 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
       throw new Error(result.error || 'Failed to send your message.');
     }
 
-    setStatus('Message sent successfully!');
+    setStatus({
+      message: 'Message sent successfully!',
+      type: 'success',
+    });
+
     form.reset();
-  } catch {
-    setStatus('Something went wrong. Please try again later.');
+  } catch (error) {
+    setStatus({
+      message:
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again later.',
+      type: 'error',
+    });
   } finally {
     setIsSending(false);
   }
@@ -86,10 +100,22 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
               </button>
 
               {status && (
-                <p role="status" aria-live="polite" className="text-sm text-muted">
-                  {status}
-                </p>
-              )}
+              <div
+                role="status"
+                aria-live="polite"
+                className={`flex mx-auto items-center gap-3 rounded-full px-5 border p-1 text-sm font-medium transition-all duration-300 ${
+                   status.type === 'success'
+                    ? 'border-green-500/20 bg-green-500 text-white'
+                    : 'border-red-500/20 bg-red-500 text-white'
+                }`}
+              >
+                <span className="text-lg">
+                  {status.type === 'success' ? '✓' : '✕'}
+                </span>
+
+                 <p>{status.message}</p>
+               </div>
+            )}
 
             </form>
           </div>
