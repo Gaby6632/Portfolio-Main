@@ -12,9 +12,9 @@ export default function Footer() {
           <h3 className={title}>YourName</h3>
           <p className="text-muted">Short tagline placeholder.</p>
           <div className="mt-4 flex gap-4 text-2xl text-accent">
-            <a href="https://www.reddit.com/user/gaby6632/" aria-label="Reddit" className="hover:text-accent2"><FaReddit /></a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-accent2"><FaLinkedin /></a>
-            <a href="https://github.com/Gaby6632" aria-label="GitHub" className="hover:text-accent2"><FaGithub /></a>
+            <a href="https://www.reddit.com/user/gaby6632/" target='_black' aria-label="Reddit" className="hover:text-accent2"><FaReddit /></a>
+            <a href="https://www.linkedin.com/in/gabi-j-5b4199355/"  target="_blank" aria-label="LinkedIn" className="hover:text-accent2"><FaLinkedin /></a>
+            <a href="https://github.com/Gaby6632" aria-label="GitHub"  target="_blank" className="hover:text-accent2"><FaGithub /></a>
           </div>
         </div>
         <div>

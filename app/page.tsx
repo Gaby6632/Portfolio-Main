@@ -8,23 +8,63 @@ export default function Home() {
       {/* 1. Header */}
       <section className="container-x grid min-h-[calc(100vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
         <div>
-          <h1 className={h1}>Your title goes here</h1>
-          <p className="max-w-[520px] text-lg text-muted">A short paragraph under the title. Tell visitors who you are and what you do.</p>
-          <div className="mt-6 flex flex-wrap gap-4">
+          <h1 className={h1}>
+            Building modern
+            <span className="block font-serif text-blue-500">
+              digital experiences.
+            </span>
+          </h1>
+          <p className="mt-6 max-w-[520px] text-lg leading-8 text-muted">
+            I design and develop modern websites and web applications,
+            combining clean design, reliable functionality and performance.
+            From frontend interfaces to backend systems, I turn ideas into
+            practical digital solutions.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/hire-me" className={btnFill}>Hire Me</Link>
             <Link href="/contact" className={btnOutline}>Contact Me</Link>
           </div>
         </div>
-        <img className="order-first max-h-96 w-full rounded-[20px] object-cover md:order-none md:max-h-[600px]" src="https://placehold.co/500x600?text=Your+Photo" alt="Your photo" />
+        <img
+          className="order-first max-h-96 w-full rounded-[20px] object-cover md:order-none md:max-h-[600px]"
+          src="https://placehold.co/500x600?text=Your+Photo"
+          alt="Your photo"
+        />
       </section>
 
       {/* 2. Description */}
       <section className="container-x grid items-center gap-12 py-16 md:grid-cols-2">
         <div>
-          <h2 className={h2}>What I do</h2>
-          <p>Write a paragraph about your services here. Explain what you offer, who you work with and why people should choose you.</p>
+          <span className="mb-3 block text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
+            Beyond the interface
+          </span>
+          <h2 className={h2}>
+            More than just websites.
+          </h2>
+          <p className="mt-5 text-base leading-8 text-muted">
+            I focus on building complete web solutions that combine thoughtful
+            design with solid technical foundations. My work goes beyond
+            creating visually appealing interfaces, covering everything from
+            responsive frontend development to backend logic, database
+            integration and deployment.
+          </p>
+          <p className="mt-4 text-base leading-8 text-muted">
+            Whether it's a simple business website or a more complex web
+            application, my goal is to create solutions that are reliable,
+            maintainable and built around real-world needs.
+          </p>
+          <Link
+            href="/about"
+            className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
+          >
+            More about me <span aria-hidden="true">→</span>
+          </Link>
         </div>
-        <img className="w-full rounded-2xl" src="https://placehold.co/600x400?text=Image" alt="" />
+        <img
+          className="w-full rounded-2xl"
+          src="https://placehold.co/600x400?text=Image"
+          alt=""
+        />
       </section>
 
       {/* 3. Skills */}
@@ -35,7 +75,7 @@ export default function Home() {
         </div>
         <SkillsCarousel />
       </section>
-
+      
       {/* 4. Get Started */}
       <section className="relative isolate overflow-hidden bg-[#cdced291] py-32 text-center">
         <span className="absolute -top-20 left-[6%] -z-20 size-[340px] rounded-full bg-red-500 opacity-85 blur-[80px]" />

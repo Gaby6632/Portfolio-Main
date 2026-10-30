@@ -64,7 +64,7 @@ export default function SkillsCarousel() {
   return (
     <>
       <div
-        className="mt-8 cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing"
+        className="mt-8 h-100 cursor-grab touch-pan-y bg-surface select-none overflow-hidden active:cursor-grabbing"
         onPointerDown={down}
         onPointerMove={move}
         onPointerUp={up}
@@ -72,12 +72,12 @@ export default function SkillsCarousel() {
         onPointerEnter={(e) => { if (e.pointerType === 'mouse') hovering.current = true; }}
         onPointerLeave={() => { hovering.current = false; }}
       >
-        <div className="flex w-max will-change-transform" ref={trackRef}>
+        <div className="flex w-max mt-7 will-change-transform" ref={trackRef}>
           {items.map((s, i) => (
             <div
               key={i}
               data-i={i}
-              className="mr-5 flex w-[260px] shrink-0 flex-col gap-2.5 rounded-[18px] p-5 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
+              className={`mr-5 flex w-[260px] shrink-0 flex-col gap-2.5 rounded-[18px] p-5 text-white ${s.shadow}`}
               style={{ background: `linear-gradient(to bottom right, ${s.light}, ${s.middle}, ${s.dark})` }}
             >
               <div className='flex justify-center'><img src={s.logo} alt={`${s.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
