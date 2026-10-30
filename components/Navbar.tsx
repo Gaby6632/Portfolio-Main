@@ -30,7 +30,7 @@ export default function Navbar() {
           Gabriel I. Joian<span className="text-blue-500">.</span>
         </Link>
 
-{/* Mobile menu button */}
+        {/* Mobile menu button */}
         <button
           type="button"
           className="relative flex h-10 w-10 flex-col items-center justify-center gap-[6px] rounded-lg transition-colors hover:bg-accent/10 md:hidden"

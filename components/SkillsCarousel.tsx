@@ -90,19 +90,18 @@ export default function SkillsCarousel() {
       </div>
 
       {selected && (
-        <div className="fixed inset-0 z-[100] grid place-items-center overflow-y-auto bg-ink/65 p-4" onClick={() => setSelected(null)}>
-          <div
-            className="flex w-[min(600px,100%)] flex-col gap-2.5 rounded-[18px] p-8 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
-            onClick={(e) => e.stopPropagation()}
-            style={{ background: `linear-gradient(to bottom right, ${selected.light}, ${selected.middle}, ${selected.dark}) ` }}
-          >
-            {/* <img src="https://placehold.co/96x96?text=Logo" alt="" className="h-20 w-20 rounded-xl object-cover" /> */}
-            <div className='flex justify-center'><img src={selected.logo} alt={`${selected.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
-            <h3 className="text-2xl font-bold">{selected.name}</h3>
-            <p>{selected.short}</p>
-            <img src={selected.image} alt={`${selected.name} logo`} className="w-full rounded-xl" />
-            <p className="mt-2">{selected.long}</p>
-          </div>
+        <div className="fixed inset-0 z-[100] grid place-items-center justify-center overflow-y-auto bg-ink/65" onClick={() => setSelected(null)}>
+            <div
+              className="w-[90%] max-w-[900px] m-10 flex-col gap-2.5 rounded-[18px] p-8 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
+              onClick={(e) => e.stopPropagation()}
+              style={{ background: `linear-gradient(to bottom right, ${selected.light}, ${selected.middle}, ${selected.dark}) ` }}
+            >
+              <div className='flex justify-center'><img src={selected.logo} alt={`${selected.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
+              <h3 className="text-2xl font-bold">{selected.name}</h3>
+              <p>{selected.short}</p>
+              <img src={selected.image} alt={`${selected.name} logo`} className="w-full bg-white p-1 mt-6 rounded-xl" />
+              <p className="mt-2">{selected.long}</p>
+            </div>
         </div>
       )}
     </>
