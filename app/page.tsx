@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import SkillsCarousel from '@/components/SkillsCarousel';
-import { btnFill, btnOutline, btnFillDark, btnOutlineDark, h1, h2 } from '@/lib/ui';
+import { btnFill, linkBtn, btnFillDark, btnOutlineDark, h1, h2 } from '@/lib/ui';
+import { FaArrowRight } from 'react-icons/fa';
 
 export default function Home() {
   return (
     <>
       {/* 1. Header */}
-      <section className="container-x grid min-h-[calc(100vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
+      <section className="container-x grid min-h-[calc(90vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
         <div>
           <h1 className={h1}>
             Building modern
@@ -21,8 +22,16 @@ export default function Home() {
             practical digital solutions.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/hire-me" className={btnFill}>Hire Me</Link>
-            <Link href="/contact" className={btnOutline}>Contact Me</Link>
+            <Link href="/contact" className={btnFill}>Contact Me</Link>
+          </div>
+          <div className="mt-7 felx-col flex items-start gap-5">
+            <Link href="/hire-me" className={linkBtn}>
+              Hire Me <FaArrowRight className="text-xs" />
+            </Link>
+
+            <Link href="/services" className={linkBtn}>
+              Explore my services <FaArrowRight className="text-xs" />
+            </Link>
           </div>
         </div>
         <img
@@ -55,7 +64,7 @@ export default function Home() {
           </p>
           <Link
             href="/about"
-            className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
+            className="mt-6 inline-flex text-bold items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
           >
             More about me <span aria-hidden="true">→</span>
           </Link>

@@ -1,7 +1,8 @@
-const base = 'inline-block cursor-pointer rounded-[10px] border-2 border-accent px-7 py-3.5 font-semibold transition-colors';
+const base = 'inline-block cursor-pointer rounded-full border-2 border-accent px-10 py-2.5 font-semibold transition-colors';
 
 export const btnFill = `${base} bg-accent text-white hover:bg-transparent hover:text-accent`;
 export const btnOutline = `${base} bg-transparent text-accent hover:bg-accent hover:text-white`;
+export const linkBtn = "inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
 // variants for the dark "Get Started" section
 export const btnFillDark = `${base} bg-accent text-white hover:bg-transparent hover:text-white`;
 export const btnOutlineDark = `${base} border-white bg-transparent text-white hover:bg-white hover:text-accent`;
