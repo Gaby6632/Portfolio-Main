@@ -14,3 +14,38 @@ export const field = 'w-full rounded-[10px] border border-line bg-surface px-4 p
 export const paragraph = 'text-base text-muted-foreground max-w-3xl mx-auto md:text-xl';
 export const p = 'text-base text-left text-muted-foreground mb-5 max-w-3xl md:text-xl';
 export const subTitle = 'text-xl max-w-3xl md:text-2xl'
+
+// export const iconGH = 'text-white bg-gray-800 flex flex-col justify-center p-2 text-3xl rounded-full hover:bg-none '
+// export const iconLI = 'text-white bg-accent flex flex-col justify-center p-2 text-3xl rounded-full'
+
+export const iconGH = `
+  flex items-center justify-center
+  p-2 text-3xl rounded-full
+  text-white
+  bg-[#18181b]
+  border border-white/10
+  shadow-md shadow-black/20
+  transition-all duration-300 ease-out
+  hover:bg-[#242428]
+  hover:border-white/25
+  hover:scale-110
+  hover:shadow-lg hover:shadow-black/30
+  active:scale-95
+  cursor-pointer
+`
+
+export const iconLI = `
+  flex items-center justify-center
+  p-2 text-3xl rounded-full
+  text-white
+  bg-[#0A66C2]
+  border border-[#0A66C2]/40
+  shadow-md shadow-blue-900/20
+  transition-all duration-300 ease-out
+  hover:bg-[#004182]
+  hover:border-blue-300/30
+  hover:scale-110
+  hover:shadow-lg hover:shadow-blue-900/30
+  active:scale-95
+  cursor-pointer
+`

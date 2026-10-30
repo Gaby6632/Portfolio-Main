@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import SkillsCarousel from '@/components/SkillsCarousel';
-import { btnFill, linkBtn, btnFillDark, btnOutlineDark, h1, h2 } from '@/lib/ui';
-import { FaArrowRight } from 'react-icons/fa';
+import { btnFill, linkBtn, btnFillDark, btnOutlineDark, h1, h2, iconGH, iconLI } from '@/lib/ui';
+import { FaArrowRight, FaGithub } from 'react-icons/fa';
+import { FaLinkedinIn } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/contact" className={btnFill}>Contact Me</Link>
+            <a href="https://www.linkedin.com/in/gabi-j-5b4199355/" target='_blank' className={iconLI}><FaLinkedinIn className=''/></a>
+            <a href="https://github.com/Gaby6632" target='_blank' className={iconGH}><FaGithub /></a>
           </div>
           <div className="mt-7 felx-col flex items-start gap-5">
             <Link href="/hire-me" className={linkBtn}>
