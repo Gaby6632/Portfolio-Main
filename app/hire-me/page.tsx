@@ -18,7 +18,7 @@ export default function HireMe() {
           <div>
             <h1 className={`${h1} leading-tight`}>
               Let's build something
-              <span className="block font-serif italic text-blue-500">
+              <span className="block font-serif italic text-accent">
                 remarkable.
               </span>
             </h1>
@@ -41,9 +41,9 @@ export default function HireMe() {
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-5 rounded-3xl bg-blue-500/10 blur-3xl" />
+            <div className="absolute -inset-5 rounded-3xl bg-green-500/10 blur-3xl" />
 
-            <div className="relative rounded-3xl border border-gray-200 bg-white p-7 shadow-xl dark:border-white/10 dark:bg-[#111]">
+            <div className="relative rounded-3xl border border-gray-200 bg-paper p-7 shadow-x">
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-400">What I can build</p>

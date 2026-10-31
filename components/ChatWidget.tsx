@@ -194,7 +194,7 @@ export default function ChatWidget() {
     ask(next);
   }
 
-  const linkCls = 'font-medium text-accent underline underline-offset-2';
+  const linkCls = 'font-medium text-[#5277B8] underline underline-offset-2';
 
   const md: Components = {
     a: ({ href = '', children }) =>
