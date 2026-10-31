@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -15,55 +15,57 @@ export default function ChatWidget() {
   const [loading, setLoading] = useState(false);
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
   const [speakingIdx, setSpeakingIdx] = useState<number | null>(null);
-  const [voice, setVoice] = useState<SpeechSynthesisVoice | null>(null);
+  const [audioError, setAudioError] = useState<string | null>(null);
+  const [audioErrorIdx, setAudioErrorIdx] = useState<number | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioUrlRef = useRef<string | null>(null);
+  const ttsAbortRef = useRef<AbortController | null>(null);
+  const playbackIdRef = useRef(0);
+  const activeMessageRef = useRef<number | null>(null);
+  const audioCacheRef = useRef(new Map<string, Blob>());
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading, open]);
 
-  // pick a British male voice when available
-  useEffect(() => {
-    const synth = window.speechSynthesis;
-    if (!synth) return;
+  const stopAudio = useCallback(() => {
+    playbackIdRef.current += 1;
+    activeMessageRef.current = null;
+    ttsAbortRef.current?.abort();
+    ttsAbortRef.current = null;
 
-    const pick = () => {
-      const gb = synth
-        .getVoices()
-        .filter((v) => v.lang.replace('_', '-').toLowerCase().startsWith('en-gb'));
-      const female = /(female|libby|sonia|maisie|hazel|kate|serena|susan|fiona|martha)/i;
-      const male = /(male|daniel|ryan|george|thomas|arthur|oliver|james)/i;
+    const audio = audioRef.current;
+    audioRef.current = null;
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute('src');
+      audio.load();
+    }
 
-      setVoice(
-        gb.find((v) => male.test(v.name) && !female.test(v.name)) ??
-          gb.find((v) => !female.test(v.name)) ??
-          gb[0] ??
-          null
-      );
-    };
-
-    pick();
-    synth.addEventListener('voiceschanged', pick); // voices load async in Chrome
-    return () => synth.removeEventListener('voiceschanged', pick);
+    if (audioUrlRef.current) {
+      URL.revokeObjectURL(audioUrlRef.current);
+      audioUrlRef.current = null;
+    }
+    setSpeakingIdx(null);
   }, []);
 
-  // stop speech when the component unmounts
-  useEffect(() => () => window.speechSynthesis?.cancel(), []);
+  // Stop playback and release object URLs when the component unmounts.
+  useEffect(() => () => stopAudio(), [stopAudio]);
 
   // close (and stop speech) when clicking outside the chat card
   useEffect(() => {
     if (!open) return;
     const onDown = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        window.speechSynthesis?.cancel();
-        setSpeakingIdx(null);
+        stopAudio();
         setOpen(false);
       }
     };
     document.addEventListener('mousedown', onDown);
     return () => document.removeEventListener('mousedown', onDown);
-  }, [open]);
+  }, [open, stopAudio]);
 
   // strip markdown so it reads/copies as plain text
   const plain = (s: string) =>
@@ -81,28 +83,75 @@ export default function ChatWidget() {
     } catch {}
   }
 
-  function speak(i: number, text: string) {
-    const synth = window.speechSynthesis;
-    if (!synth) return;
-    if (speakingIdx === i) {
-      synth.cancel();
-      setSpeakingIdx(null);
+  async function speak(i: number, text: string) {
+    if (activeMessageRef.current === i) {
+      stopAudio();
       return;
     }
-    synth.cancel();
-    const u = new SpeechSynthesisUtterance(plain(text));
-    if (voice) {
-      u.voice = voice;
-      u.lang = voice.lang;
-    } else {
-      u.lang = 'en-GB';
-    }
-    u.rate = 1.1;
-    u.pitch = 0.9;
-    u.onend = () => setSpeakingIdx(null);
-    u.onerror = () => setSpeakingIdx(null);
+
+    stopAudio();
+    setAudioError(null);
+    setAudioErrorIdx(null);
+    const playbackId = playbackIdRef.current;
+    activeMessageRef.current = i;
     setSpeakingIdx(i);
-    synth.speak(u);
+    const spokenText = plain(text);
+
+    try {
+      let audioBlob = audioCacheRef.current.get(spokenText);
+      if (!audioBlob) {
+        const controller = new AbortController();
+        ttsAbortRef.current = controller;
+        const response = await fetch('/api/tts', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text: spokenText }),
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          const data = (await response.json().catch(() => null)) as { error?: string } | null;
+          throw new Error(data?.error || 'Unable to generate speech right now.');
+        }
+
+        audioBlob = await response.blob();
+        if (playbackIdRef.current !== playbackId) return;
+
+        audioCacheRef.current.set(spokenText, audioBlob);
+        if (audioCacheRef.current.size > 8) {
+          const oldestText = audioCacheRef.current.keys().next().value;
+          if (oldestText) audioCacheRef.current.delete(oldestText);
+        }
+      }
+
+      if (playbackIdRef.current !== playbackId) return;
+
+      const audioUrl = URL.createObjectURL(audioBlob);
+      audioUrlRef.current = audioUrl;
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+      audio.onended = stopAudio;
+      audio.onerror = () => {
+        if (playbackIdRef.current !== playbackId) return;
+        stopAudio();
+        setAudioError('Audio could not be played. Please try again.');
+        setAudioErrorIdx(i);
+      };
+
+      try {
+        await audio.play();
+      } catch {
+        if (playbackIdRef.current !== playbackId) return;
+        stopAudio();
+        setAudioError('Playback was blocked by your browser. Tap Read aloud to try again.');
+        setAudioErrorIdx(i);
+      }
+    } catch (error) {
+      if (playbackIdRef.current !== playbackId) return;
+      stopAudio();
+      setAudioError(error instanceof Error ? error.message : 'Unable to generate speech right now.');
+      setAudioErrorIdx(i);
+    }
   }
 
   async function ask(history: Message[]) {
@@ -124,16 +173,14 @@ export default function ChatWidget() {
 
   function regenerate(i: number) {
     if (loading) return;
-    window.speechSynthesis?.cancel();
-    setSpeakingIdx(null);
+    stopAudio();
     const history = messages.slice(0, i);
     setMessages(history);
     ask(history);
   }
 
   function closeChat() {
-    window.speechSynthesis?.cancel();
-    setSpeakingIdx(null);
+    stopAudio();
     setOpen(false);
   }
 
@@ -249,6 +296,9 @@ export default function ChatWidget() {
                     <FaRedo />
                   </button>
                 </div>
+                {audioError && audioErrorIdx === i && speakingIdx === null && (
+                  <p role="status" className="mt-1 text-xs text-red-600">{audioError}</p>
+                )}
               </div>
             )
           )}
