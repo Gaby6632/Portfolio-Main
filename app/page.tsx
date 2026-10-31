@@ -8,75 +8,101 @@ export default function Home() {
   return (
     <>
       {/* 1. Header */}
-      <section className="container-x grid min-h-[calc(90vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
-        <div>
-          <h1 className={h1}>
-            Building modern
-            <span className="block font-serif text-blue-500">
-              digital experiences.
-            </span>
-          </h1>
-          <p className="mt-6 max-w-[520px] text-lg leading-8 text-muted">
-            I design and develop modern websites and web applications,
-            combining clean design, reliable functionality and performance.
-            From frontend interfaces to backend systems, I turn ideas into
-            practical digital solutions.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/contact" className={btnFill}>Contact Me</Link>
-            <a href="https://www.linkedin.com/in/gabi-j-5b4199355/" target='_blank' className={iconLI}><FaLinkedinIn className=''/></a>
-            <a href="https://github.com/Gaby6632" target='_blank' className={iconGH}><FaGithub /></a>
-          </div>
-          <div className="mt-7 felx-col flex items-start gap-5">
-            <Link href="/hire-me" className={linkBtn}>
-              Hire Me <FaArrowRight className="text-xs" />
-            </Link>
-
-            <Link href="/services" className={linkBtn}>
-              Explore my services <FaArrowRight className="text-xs" />
-            </Link>
-          </div>
-        </div>
-        <img
-          className="order-first max-h-96 w-full rounded-[20px] object-cover md:order-none md:max-h-[600px]"
-          src="https://placehold.co/500x600?text=Your+Photo"
-          alt="Your photo"
+      <section className="hero-section relative isolate overflow-hidden">
+        {/* Diagonal background */}
+        <div
+          aria-hidden="true"
+          className="hero-diagonal absolute -right-[18%] -top-[12%] -z-10 h-[210%] w-[75%] rotate-[35deg] bg-[#171917]"
         />
+
+        <div className="container-x grid min-h-[calc(105vh-68px)] items-center gap-12 py-16 md:grid-cols-[1.1fr_.9fr]">
+          <div>
+            <h1 className={h1}>
+              Building modern
+              <span className="block font-serif text-accent">
+                digital experiences.
+              </span>
+            </h1>
+
+            <p className="mt-6 max-w-[520px] text-lg leading-8 text-muted">
+              I design and develop modern websites and web applications,
+              combining clean design, reliable functionality and performance.
+              From frontend interfaces to backend systems, I turn ideas into
+              practical digital solutions.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link href="/contact" className={btnFill}>Contact Me</Link>
+              <a href="https://www.linkedin.com/in/gabi-j-5b4199355/" target="_blank" rel="noopener noreferrer" className={iconLI}>
+                <FaLinkedinIn />
+              </a>
+              <a href="https://github.com/Gaby6632" target="_blank" rel="noopener noreferrer" className={iconGH}>
+                <FaGithub />
+              </a>
+            </div>
+
+            <div className="mt-7 flex flex-col items-start gap-5">
+              <Link href="/hire-me" className={linkBtn}>
+                Hire Me <FaArrowRight className="text-xs" />
+              </Link>
+
+              <Link href="/services" className={linkBtn}>
+                Explore my services <FaArrowRight className="text-xs" />
+              </Link>
+            </div>
+          </div>
+
+          <img
+            className="order-first max-h-96 w-full object-cover md:order-none md:max-h-[600px]"
+            src="https://placehold.co/500x600?text=Your+Photo"
+            alt="Your photo"
+          />
+        </div>
       </section>
 
       {/* 2. Description */}
-      <section className="container-x grid items-center gap-12 py-16 md:grid-cols-2">
-        <div>
-          <span className="mb-3 block text-sm font-semibold uppercase tracking-[0.18em] text-blue-500">
-            Beyond the interface
-          </span>
-          <h2 className={h2}>
-            More than just websites.
-          </h2>
-          <p className="mt-5 text-base leading-8 text-muted">
-            I focus on building complete web solutions that combine thoughtful
-            design with solid technical foundations. My work goes beyond
-            creating visually appealing interfaces, covering everything from
-            responsive frontend development to backend logic, database
-            integration and deployment.
-          </p>
-          <p className="mt-4 text-base leading-8 text-muted">
-            Whether it's a simple business website or a more complex web
-            application, my goal is to create solutions that are reliable,
-            maintainable and built around real-world needs.
-          </p>
-          <Link
-            href="/about"
-            className="mt-6 inline-flex text-bold items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
-          >
-            More about me <span aria-hidden="true">→</span>
-          </Link>
+      <section className="description-section relative isolate overflow-hidden py-24">
+
+        {/* Background image */}
+        <div className="description-bg absolute inset-0 -z-20" />
+
+        {/* Dark overlay */}
+      <div className="absolute inset-0 -z-10 bg-black/85" />
+
+        <div className="container-x grid items-center gap-12 md:grid-cols-2">
+
+          <div className="description-content">
+            <span className="mb-3 block text-sm font-semibold uppercase tracking-[0.18em] text-[#A0AD8A]">
+              Beyond the interface
+            </span>
+
+            <h2 className={`${h2} text-white`}>
+              More than just websites.
+            </h2>
+
+            <p className="mt-5 text-base leading-8 text-white/75">
+              I focus on building complete web solutions that combine thoughtful
+              design with solid technical foundations. My work goes beyond
+              creating visually appealing interfaces, covering everything from
+              responsive frontend development to backend logic, database
+              integration and deployment.
+            </p>
+
+            <p className="mt-4 text-base leading-8 text-white/75">
+              Whether it's a simple business website or a more complex web
+              application, my goal is to create solutions that are reliable,
+              maintainable and built around real-world needs.
+            </p>
+
+            <Link
+              href="/about"
+              className="mt-6 inline-flex items-center gap-2 font-semibold text-[#A0AD8A] transition-colors hover:text-white"
+            >
+              More about me <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
         </div>
-        <img
-          className="w-full rounded-2xl"
-          src="https://placehold.co/600x400?text=Image"
-          alt=""
-        />
       </section>
 
       {/* 3. Skills */}

@@ -5,6 +5,82 @@ import { skills, type Skill } from '@/lib/skills';
 const SPEED = 0.5; // px per frame, moves left -> right
 const items = [...skills, ...skills]; // duplicated for a seamless loop
 
+
+type ListSkill = {
+  name: string;
+  logo: string;
+};
+
+const getSkills = (names: string[]): ListSkill[] =>
+  names.flatMap((name) => {
+    const skill = skills.find((s) => s.name === name);
+
+    return skill
+      ? [{ name: skill.name, logo: skill.logo }]
+      : [];
+  });
+
+const skillCategories: {
+  title: string;
+  skills: ListSkill[];
+}[] = [
+  {
+    title: 'Using Now',
+    skills: getSkills([
+      'HTML',
+      'CSS',
+      'JavaScript',
+      'React',
+      'Next.js',
+      'Node.js',
+      'Git',
+      'Tailwind CSS',
+      'Python',
+      'SQL',
+    ]),
+  },
+  {
+   title: 'Learning',
+    skills: [
+      ...getSkills([
+        'TypeScript',
+        'Rust',
+      ]),
+      {
+        name: 'Spanish',
+        logo: 'https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/es.svg',
+      },
+    ],
+  },
+  {
+    title: 'Other Skills',
+    skills: [
+      ...getSkills([
+        'GitHub',
+        'Supabase',
+        'Vercel',
+      ]),
+      {
+        name: 'Linux',
+        logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg',
+      },
+    ],
+  },
+  {
+    title: 'Languages',
+    skills: [
+      {
+        name: 'Romanian',
+        logo: 'https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/ro.svg',
+      },
+      {
+        name: 'English',
+        logo: 'https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/gb.svg',
+      },
+    ],
+  },
+];
+
 export default function SkillsCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useRef(0);
@@ -61,10 +137,11 @@ export default function SkillsCarousel() {
     drag.current.active = false;
   };
 
+
   return (
     <>
       <div
-        className="mt-8 h-100 cursor-grab touch-pan-y bg-surface select-none overflow-hidden active:cursor-grabbing"
+        className="mt-8 h-[360px] sm:h-100 cursor-grab touch-pan-y bg-surface select-none overflow-hidden active:cursor-grabbing"
         onPointerDown={down}
         onPointerMove={move}
         onPointerUp={up}
@@ -77,7 +154,7 @@ export default function SkillsCarousel() {
             <div
               key={i}
               data-i={i}
-              className={`mr-5 flex w-[260px] shrink-0 flex-col gap-2.5 rounded-[18px] p-5 text-white ${s.shadow}`}
+              className={`mr-4 sm:mr-5 flex w-[220px] sm:w-[260px] shrink-0 flex-col gap-2 sm:gap-2.5 rounded-[10px] sm:rounded-[10px] p-4 sm:p-5 text-white ${s.shadow}`}
               style={{ background: `linear-gradient(to bottom right, ${s.light}, ${s.middle}, ${s.dark})` }}
             >
               <div className='flex justify-center'><img src={s.logo} alt={`${s.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
@@ -88,6 +165,41 @@ export default function SkillsCarousel() {
           ))}
         </div>
       </div>
+
+      {/* Skills List */}
+
+<div className="mt-16 space-y-14">
+  {skillCategories.map((category) => (
+    <section key={category.title}>
+      <h2 className="mb-8 text-center text-3xl font-bold text-accent">
+        {category.title}
+      </h2>
+
+      <div className="mx-auto grid max-w-4xl grid-cols-[repeat(auto-fit,minmax(100px,1fr))] justify-items-center gap-x-6 gap-y-8">
+        {category.skills.map((skill) => (
+          <div
+            key={skill.name}
+            className="flex w-full max-w-[130px] flex-col items-center gap-3 rounded-xl p-4 transition-transform duration-200 hover:-translate-y-1"
+          >
+            <div className="flex size-16 items-center justify-center">
+              <img
+                src={skill.logo}
+                alt={`${skill.name} logo`}
+                loading="lazy"
+                draggable={false}
+                className="size-12 object-contain"
+              />
+            </div>
+
+            <span className="text-center text-sm font-semibold text-paper">
+              {skill.name}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
 
       {selected && (
         <div className="fixed inset-0 z-[100] w-full h-full grid place-items-center justify-center overflow-y-auto bg-ink/65" onClick={() => setSelected(null)}>

@@ -1,26 +1,52 @@
-const base = 'inline-block cursor-pointer rounded-full border-2 border-accent px-10 py-2.5 font-semibold transition-colors';
+// New Variables
+const base = 'inline-flex items-center justify-center gap-2 cursor-pointer rounded-md border border-2 border-accent px-7 py-3 font-semibold tracking-wide transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]';
 
-export const btnFill = `${base} bg-accent text-white hover:bg-transparent hover:text-accent`;
-export const btnOutline = `${base} bg-transparent text-accent hover:bg-accent hover:text-white`;
-export const linkBtn = "inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
-// variants for the dark "Get Started" section
-export const btnFillDark = `${base} bg-accent text-white hover:bg-transparent hover:text-white`;
-export const btnOutlineDark = `${base} border-white bg-transparent text-white hover:bg-white hover:text-accent`;
+export const btnFill = `${base} bg-accent text-on-accent shadow-sm hover:bg-ink hover:text-accent hover:border-accent hover:shadow-md`;
+export const btnOutline = `${base} bg-transparent text-accent hover:bg-accent hover:text-on-accent hover:shadow-md`;
+export const linkBtn = 'inline-flex items-center gap-2 font-semibold text-accent transition-all duration-200 hover:text-accent-soft hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink';
 
-export const h1 = 'mb-4 text-4xl font-bold leading-tight md:text-6xl';
-export const h2 = 'mb-4 text-3xl font-bold md:text-4xl';
-export const field = 'w-full rounded-[10px] border border-line bg-surface px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-accent2';
+// Variants for the "Get Started" section
+export const btnFillDark = `${base} bg-accent text-on-accent shadow-sm hover:bg-white/30 hover:text-paper hover:border-accent-soft hover:shadow-md`;
+export const btnOutlineDark = `${base} border-paper-dim bg-white/30 text-paper hover:border-accent hover:bg-accent hover:text-on-accent`;
 
-export const paragraph = 'text-base text-muted-foreground max-w-3xl mx-auto md:text-xl';
-export const p = 'text-base text-left text-muted-foreground mb-5 max-w-3xl md:text-xl';
-export const subTitle = 'text-xl max-w-3xl md:text-2xl'
+// Typography
+export const h1 = 'mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-paper sm:text-5xl md:text-6xl lg:text-7xl';
+export const h2 = 'mb-5 text-3xl font-bold leading-tight tracking-tight text-paper sm:text-4xl md:text-5xl';
+
+// Form fields
+export const field = 'w-full rounded-md border border-line bg-ink-soft px-4 py-3 text-paper placeholder:text-paper-dim/60 outline-none transition-all duration-200 focus:border-accent focus:ring-2 focus:ring-accent/30 disabled:cursor-not-allowed disabled:opacity-50';
+
+// Text
+export const paragraph = 'mx-auto max-w-3xl text-base leading-8 text-paper-dim sm:text-lg md:text-xl';
+export const p = 'mb-5 max-w-3xl text-left text-base leading-7 text-paper-dim sm:text-lg md:text-xl';
+export const subTitle = 'max-w-3xl text-xl font-medium leading-relaxed text-paper-dim sm:text-2xl';
+
+
+// Old Variables
+
+// const base = 'inline-block cursor-pointer rounded-full border-2 border-accent px-10 py-2.5 font-semibold transition-colors';
+
+// export const btnFill = `${base} bg-accent text-white hover:bg-transparent hover:text-accent`;
+// export const btnOutline = `${base} bg-transparent text-accent hover:bg-accent hover:text-white`;
+// export const linkBtn = "inline-flex items-center gap-2 font-semibold text-blue-600 transition-colors hover:text-blue-700"
+// // variants for the dark "Get Started" section
+// export const btnFillDark = `${base} bg-accent text-white hover:bg-transparent hover:text-white`;
+// export const btnOutlineDark = `${base} border-white bg-transparent text-white hover:bg-white hover:text-accent`;
+
+// export const h1 = 'mb-4 text-4xl font-bold leading-tight md:text-6xl';
+// export const h2 = 'mb-4 text-3xl font-bold md:text-4xl';
+// export const field = 'w-full rounded-[10px] border border-line bg-surface px-4 py-3 text-ink outline-none focus:ring-2 focus:ring-accent2';
+
+// export const paragraph = 'text-base text-muted-foreground max-w-3xl mx-auto md:text-xl';
+// export const p = 'text-base text-left text-muted-foreground mb-5 max-w-3xl md:text-xl';
+// export const subTitle = 'text-xl max-w-3xl md:text-2xl'
 
 // export const iconGH = 'text-white bg-gray-800 flex flex-col justify-center p-2 text-3xl rounded-full hover:bg-none '
 // export const iconLI = 'text-white bg-accent flex flex-col justify-center p-2 text-3xl rounded-full'
 
 export const iconGH = `
-  flex items-center justify-center
-  p-2 text-3xl rounded-full
+  flex h-12 w-12 shrink-0 items-center justify-center
+  text-2xl rounded-full
   text-white
   bg-[#18181b]
   border border-white/10
@@ -35,8 +61,8 @@ export const iconGH = `
 `
 
 export const iconLI = `
-  flex items-center justify-center
-  p-2 text-3xl rounded-full
+  flex h-12 w-12 shrink-0 items-center justify-center
+  text-2xl rounded-full
   text-white
   bg-[#0A66C2]
   border border-[#0A66C2]/40
