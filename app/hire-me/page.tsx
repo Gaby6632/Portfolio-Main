@@ -13,10 +13,6 @@ export default function HireMe() {
   return (
     <section className="container-x min-h-[80vh] py-16 md:py-24">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-8 flex items-center gap-2 text-sm font-medium text-blue-500">
-          <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
-          Available for new projects
-        </div>
 
         <div className="grid items-center gap-14 lg:grid-cols-2">
           <div>
@@ -51,7 +47,7 @@ export default function HireMe() {
               <div className="mb-8 flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-400">What I can build</p>
-                  <h2 className="mt-1 text-xl font-bold">Your next project</h2>
+                  <h2 className="mt-1 text-xl text-accent font-bold">Your next project</h2>
                 </div>
                 <FaCode className="text-2xl text-blue-500" />
               </div>
@@ -62,7 +58,7 @@ export default function HireMe() {
                     <FaGlobe />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Business websites</h3>
+                    <h3 className="font-semibold text-accent">Business websites</h3>
                     <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                       Professional websites that showcase your brand and services.
                     </p>
@@ -74,7 +70,7 @@ export default function HireMe() {
                     <FaCode />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Custom web applications</h3>
+                    <h3 className="font-semibold text-accent">Custom web applications</h3>
                     <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                       Interactive applications built around your requirements.
                     </p>
@@ -86,7 +82,7 @@ export default function HireMe() {
                     <FaRocket />
                   </div>
                   <div>
-                    <h3 className="font-semibold">Deployment and hosting</h3>
+                    <h3 className="font-semibold text-accent">Deployment and hosting</h3>
                     <p className="mt-1 text-sm leading-6 text-gray-500 dark:text-gray-400">
                       Get your website online with optional hosting and maintenance.
                     </p>
@@ -95,7 +91,7 @@ export default function HireMe() {
               </div>
 
               <div className="mt-8 border-t border-gray-200 pt-6 dark:border-white/10">
-                <p className="mb-4 text-sm font-semibold">What you can expect</p>
+                <p className="mb-4 text-sm font-semibold text-accent">What you can expect</p>
 
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                   {benefits.map((benefit) => (
