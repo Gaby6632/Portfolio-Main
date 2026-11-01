@@ -141,7 +141,7 @@ export default function SkillsCarousel() {
   return (
     <>
       <div
-        className="mt-8 h-[360px] sm:h-100 cursor-grab touch-pan-y bg-surface select-none overflow-hidden active:cursor-grabbing"
+        className="h-[clamp(260px,35vw,380px)] w-full cursor-grab touch-pan-y bg-surface select-none overflow-hidden active:cursor-grabbing"
         onPointerDown={down}
         onPointerMove={move}
         onPointerUp={up}
@@ -149,17 +149,17 @@ export default function SkillsCarousel() {
         onPointerEnter={(e) => { if (e.pointerType === 'mouse') hovering.current = true; }}
         onPointerLeave={() => { hovering.current = false; }}
       >
-        <div className="flex w-max mt-7 will-change-transform" ref={trackRef}>
+        <div className="flex w-max my-1 will-change-transform" ref={trackRef}>
           {items.map((s, i) => (
             <div
               key={i}
               data-i={i}
-              className={`mr-4 sm:mr-5 flex w-[220px] sm:w-[260px] shrink-0 flex-col gap-2 sm:gap-2.5 rounded-[10px] sm:rounded-[10px] p-4 sm:p-5 text-white ${s.shadow}`}
+              className={`mr-3 sm:mr-5 my-[clamp(10px,2vw,20px)] flex w-[clamp(150px,20vw,220px)] shrink-0 flex-col gap-[clamp(6px,1vw,10px)] rounded-[10px] p-[clamp(10px,1.5vw,20px)] text-white ${s.shadow}`}
               style={{ background: `linear-gradient(to bottom right, ${s.light}, ${s.middle}, ${s.dark})` }}
             >
-              <div className='flex justify-center'><img src={s.logo} alt={`${s.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
-              <h3 className="text-xl text-center font-bold">{s.name}</h3>
-              <p className="text-sm opacity-95">{s.short}</p>
+              <div className='flex justify-center'><img src={s.logo} alt={`${s.name} logo`} draggable={false} className="size-[clamp(32px,5vw,60px)] p-1 bg-white rounded-xl object-cover"/></div>
+              <h3 className="text-[clamp(14px,1.5vw,20px)] text-center font-bold">{s.name}</h3>
+              <p className="text-[clamp(11px,1vw,14px)] opacity-95">{s.short}</p>
               <img src={s.image} alt={`${s.name} logo`} draggable={false} className="mt-auto w-full rounded-xl" />
             </div>
           ))}
