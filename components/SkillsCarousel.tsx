@@ -201,21 +201,111 @@ export default function SkillsCarousel() {
   ))}
 </div>
 
-      {selected && (
-        <div className="fixed inset-0 z-[100] w-full h-full grid place-items-center justify-center overflow-y-auto bg-ink/65" onClick={() => setSelected(null)}>
-            <div
-              className="w-[90%] max-w-[900px] m-10 flex-col gap-2.5 rounded-[18px] p-8 text-white shadow-[0_10px_30px_rgba(15,23,42,.2)]"
-              onClick={(e) => e.stopPropagation()}
-              style={{ background: `linear-gradient(to bottom right, ${selected.light}, ${selected.middle}, ${selected.dark}) ` }}
-            >
-              <div className='flex justify-center'><img src={selected.logo} alt={`${selected.name} logo`} draggable={false} className="h-15 w-15 p-1 bg-white rounded-xl object-cover" /></div>
-              <h3 className="text-2xl font-bold">{selected.name}</h3>
-              <p>{selected.short}</p>
-              <img src={selected.image} alt={`${selected.name} logo`} className="w-full bg-white p-1 mt-6 rounded-xl" />
-              <p className="mt-2">{selected.long}</p>
-            </div>
+{selected && (
+  <div
+    className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-black/60 p-3 backdrop-blur-md sm:p-6"
+    onClick={() => setSelected(null)}
+  >
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="selected-card-title"
+      className="relative my-auto flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/15 shadow-2xl sm:rounded-3xl"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        background: `#20231F`,
+      }}
+    >
+      {/* Header */}
+      <div className="flex items-center gap-4 border-b border-white/15 p-4 pr-16 sm:p-6 sm:pr-20">
+        <div className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 shadow-sm sm:size-14">
+          <img
+            src={selected.logo}
+            alt={`${selected.name} logo`}
+            draggable={false}
+            className="size-full rounded-lg object-contain"
+          />
         </div>
-      )}
+
+        <div className="min-w-0 flex-1">
+          <h3
+            id="selected-card-title"
+            className="text-lg font-bold tracking-tight text-white sm:text-2xl"
+          >
+            {selected.name}
+          </h3>
+          <p className="mt-1 text-xs text-white/75 sm:text-sm">
+            Skill overview
+          </p>
+        </div>
+
+        {/* Close button */}
+        {/* <button
+          type="button"
+          onClick={() => setSelected(null)}
+          aria-label="Close project details"
+          className="absolute right-3 top-3 flex size-10 items-center justify-center rounded-full border border-white/20 bg-black/15 text-white/90 transition hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 sm:right-5 sm:top-5"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            className="size-5"
+            aria-hidden="true"
+          >
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button> */}
+      </div>
+
+      {/* Scrollable content */}
+      <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+        <div className="p-4 sm:p-6">
+          <p className="mb-5 text-sm leading-6 text-white/90 sm:text-base sm:leading-7">
+            {selected.short}
+          </p>
+
+          {/* Project image */}
+          <div className="overflow-hidden rounded-xl border border-white/15 bg-white shadow-lg sm:rounded-2xl">
+            <img
+              src={selected.image}
+              alt={`${selected.name} project preview`}
+              draggable={false}
+              className="block h-auto max-h-[45dvh] w-full object-contain"
+            />
+          </div>
+
+          {/* Full description */}
+          <div className="mt-6">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-white/65">
+              About this skill
+            </h4>
+
+            <p className="whitespace-pre-line text-sm leading-7 text-white/90 sm:text-base">
+              {selected.long}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div className="flex items-center justify-center border-t border-white/15 px-4 py-3 sm:px-6 sm:py-4">
+
+        <button
+          type="button"
+          onClick={() => setSelected(null)}
+          className="rounded-lg border border-white/30 bg-gray/30 px-4 py-2 w-50 text-sm font-medium text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </>
   );
 }
