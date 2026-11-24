@@ -1,4 +1,3 @@
-
 const SYSTEM_PROMPT = `
 # 1. ROLE AND IDENTITY
 
