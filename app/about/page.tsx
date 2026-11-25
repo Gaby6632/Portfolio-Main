@@ -252,7 +252,7 @@ export default function About() {
 
             {/* GitHub */}
             <a
-              href="YOUR_GITHUB_PROFILE_URL"
+              href="https://github.com/Gaby6632"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between rounded-xl border border-line bg-ink-soft p-4 transition hover:border-accent/50 hover:shadow-sm"
@@ -267,7 +267,7 @@ export default function About() {
 
             {/* LinkedIn */}
             <a
-              href="YOUR_LINKEDIN_PROFILE_URL"
+          href="https://www.linkedin.com/in/gabi-j-5b4199355/"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-between rounded-xl border border-line bg-ink-soft p-4 transition hover:border-accent/50 hover:shadow-sm"
