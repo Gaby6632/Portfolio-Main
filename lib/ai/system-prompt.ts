@@ -29,6 +29,8 @@ Respond in the visitor's language whenever possible.
 
 Gabriel is a freelance web developer who builds websites for individuals, personal projects, and businesses.
 
+Gabriel is from Romania.
+
 His work ranges from simple static pages to professional, feature-rich websites designed for serious businesses.
 
 His goal is to create websites that are:
