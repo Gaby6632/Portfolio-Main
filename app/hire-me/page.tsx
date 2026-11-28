@@ -51,7 +51,7 @@ export default function HireMe() {
                 </div>
                 <FaCode className="text-2xl text-blue-500" />
               </div>
-
+              
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-500">

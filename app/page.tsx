@@ -3,6 +3,7 @@ import SkillsCarousel from '@/components/SkillsCarousel';
 import { btnFill, linkBtn, btnFillDark, btnOutlineDark, h1, h2, iconGH, iconLI } from '@/lib/ui';
 import { FaArrowRight, FaGithub } from 'react-icons/fa';
 import { FaLinkedinIn } from "react-icons/fa6";
+import headerImg from "./assets/imgs/headerImg.png"
 
 export default function Home() {
   return (
@@ -54,7 +55,9 @@ export default function Home() {
 
           <img
             className="order-first max-h-96 w-full object-cover md:order-none md:max-h-[600px]"
-            src="https://placehold.co/500x600?text=Your+Photo"
+            // rounded-2xl bg-accent-soft p-1 outline-1 outline-white
+            // src="https://placehold.co/500x600?text=Your+Photo"
+            src={headerImg.src}
             alt="Your photo"
           />
         </div>
@@ -89,7 +92,7 @@ export default function Home() {
             </p>
 
             <p className="mt-4 text-base leading-8 text-white/75">
-              Whether it's a simple business website or a more complex web
+              Whether it&apos;s a simple business website or a more complex web
               application, my goal is to create solutions that are reliable,
               maintainable and built around real-world needs.
             </p>

@@ -8,7 +8,8 @@
   --color-ink-soft: #F4F4F0;    /* cards, panels and surfaces */
 
   /* Text */
-  --color-paper: #20231F;       /* primary text: soft black */
+/*  --color-paper: #20231F;        primary text: soft black */
+  --color-paper: #20331F;       /* primary text: soft black */
   --color-paper-dim: #696E65;   /* secondary text: muted gray */
 
   /* Primary accent: olive green */
@@ -72,13 +73,13 @@
         rgba(20, 23, 27, 0.72),
         rgba(20, 23, 27, 0.88)
       ),
-      url("https://placehold.co/500x600?text=Your+Photo")
       center / cover no-repeat;
       /* bg: bg-[#171917] */
   }
 
   .hero-section {
-    background: #14171B;
+    /* background: #14171B; */
+    background: #0d1312;
   }
 
   .hero-content {
